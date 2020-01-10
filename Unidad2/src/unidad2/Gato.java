@@ -47,6 +47,11 @@ public class Gato {
     public Gato() {
     }
     
+    @Override
+    public String toString(){
+        String retorno = "nombre: "+nombre+ " peso "+peso+" raza "+raza;
+        return retorno;
+    }
     
     
     

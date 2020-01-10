@@ -77,6 +77,14 @@ public class Ej1 {
          System.out.println("nombre g1 "+gato1.getNombre());
          System.out.println("peso g1 "+gato1.getPeso());
          System.out.println("raza g1 "+gato1.getRaza());
+         
+         
+         
+         System.out.println(gato1.toString());
+         
+         Gato gato2 = new Gato("michi2",3,"raza2");
+         System.out.println(gato2.toString());
+         
     }
     
 }
