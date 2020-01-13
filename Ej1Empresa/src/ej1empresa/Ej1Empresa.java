@@ -28,8 +28,11 @@ public class Ej1Empresa {
             System.out.println("2 Mostrar empresas");
             System.out.println("3 Eliminar empresa");
             System.out.println("4 Mostrar empresa");
+            System.out.println("5 Agregar Empleado");
+            System.out.println("6 Mostrar Empleados x Empresa");
+               System.out.println("7 Eliminar Empleado x Empresa");
             opcion = lector.nextInt();
-            } while ( opcion<1 || opcion>4);
+            } while ( opcion<1 || opcion>7);
             switch (opcion) {
                 case 1:
                     agregarEmpresa();
@@ -42,6 +45,15 @@ public class Ej1Empresa {
                     break;
                 case 4:
                     mostrarEmpresa();
+                    break;
+                case 5:
+                    crearEmpleado();
+                    break;
+                case 6:
+                    mostrarEmpleados();
+                    break;
+                case 7:
+                    eliminarEmpleado();
                     break;
                 default:
                     throw new AssertionError();
@@ -160,7 +172,95 @@ public class Ej1Empresa {
             System.out.println("No se encontraron coincidencias");
         }
     }
-    
+    public static void crearEmpleado(){
+        System.out.println("Indique a que empresa se desea agregar empleado");
+        int opcion;
+        do {
+            System.out.println("Ingrese forma de busqueda");
+            System.out.println("1 para buscar por codigo");
+            System.out.println("2 para buscar por nombre");
+            opcion = lector.nextInt();
+        } while (opcion<1 || opcion>2);
+        int respuesta=-1;
+        switch (opcion) {
+            case 1:
+                System.out.println("Ingrese codigo empresa");
+                int codigo = lector.nextInt();
+                respuesta = buscarEmpresa(codigo);
+                break;
+            case 2:
+                System.out.println("Ingrese nombre empresa");
+                String nombre = lector.next();
+                respuesta = buscarEmpresa(nombre);
+                break;
+            default:
+                throw new AssertionError();
+        }
+        System.out.println("Ingrese nombre del empleado");
+        String nombre = lector.next();
+        System.out.println("Ingrese apellido del empleado");
+        String apellido = lector.next();
+        System.out.println("Ingrese rut del empleado");
+        String rut = lector.next();
+        listaEmpresas[respuesta].agregarEmpleado(nombre, apellido, rut);
+        
+    }
+    public static void mostrarEmpleados(){
+        System.out.println("Indique a que empresa pertenecen"
+                + " los empleados");
+        int opcion;
+        do {
+            System.out.println("Ingrese forma de busqueda");
+            System.out.println("1 para buscar por codigo");
+            System.out.println("2 para buscar por nombre");
+            opcion = lector.nextInt();
+        } while (opcion<1 || opcion>2);
+        int respuesta=-1;
+        switch (opcion) {
+            case 1:
+                System.out.println("Ingrese codigo empresa");
+                int codigo = lector.nextInt();
+                respuesta = buscarEmpresa(codigo);
+                break;
+            case 2:
+                System.out.println("Ingrese nombre empresa");
+                String nombre = lector.next();
+                respuesta = buscarEmpresa(nombre);
+                break;
+            default:
+                throw new AssertionError();
+        }
+        listaEmpresas[respuesta].mostrarEmpleados();
+    }
+    public static void eliminarEmpleado(){
+        System.out.println("Indique a que empresa pertenecen"
+                + " los empleados");
+        int opcion;
+        do {
+            System.out.println("Ingrese forma de busqueda");
+            System.out.println("1 para buscar por codigo");
+            System.out.println("2 para buscar por nombre");
+            opcion = lector.nextInt();
+        } while (opcion<1 || opcion>2);
+        int respuesta=-1;
+        switch (opcion) {
+            case 1:
+                System.out.println("Ingrese codigo empresa");
+                int codigo = lector.nextInt();
+                respuesta = buscarEmpresa(codigo);
+                break;
+            case 2:
+                System.out.println("Ingrese nombre empresa");
+                String nombre = lector.next();
+                respuesta = buscarEmpresa(nombre);
+                break;
+            default:
+                throw new AssertionError();
+        }
+        System.out.println("Ingrese rut del empleado a eliminar");
+        String rut = lector.next();
+        listaEmpresas[respuesta].eliminarEmpleado(rut);
+    }
     
     
     

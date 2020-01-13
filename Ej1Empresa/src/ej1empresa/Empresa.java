@@ -47,8 +47,36 @@ public class Empresa {
     public Empresa(String nombre, int codigo) {
         this.nombre = nombre;
         this.codigo = codigo;
+        this.listaEmpleados = new Empleado[6];
     }
 
-    
+    public void agregarEmpleado(String nombre, String apellido, String rut){
+        
+        for (int i = 0; i < listaEmpleados.length; i++) {
+            if(listaEmpleados[i]==null){
+                listaEmpleados[i] = new Empleado(nombre,apellido,rut);
+                break;
+            }
+        }
+    }
+    public void mostrarEmpleados(){
+        for (int i = 0; i < listaEmpleados.length; i++) {
+            if(listaEmpleados[i]!=null){
+                System.out.println(listaEmpleados[i].toString());
+            }
+        }
+        
+        
+    }
+    public void eliminarEmpleado(String rut){
+        for (int i = 0; i < listaEmpleados.length; i++) {
+            if(listaEmpleados[i]!=null){
+                if(listaEmpleados[i].getRut().equals(rut)){
+                    listaEmpleados[i]=null;
+                    break;
+                }
+            }
+        }
+    }
      
 }

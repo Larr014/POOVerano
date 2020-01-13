@@ -40,7 +40,13 @@ public class Empleado {
 
     @Override
     public String toString() {
-        return "Empleado{" + "nombre=" + nombre + ", apellido=" + apellido + ", rut=" + rut + '}';
+        return "Empleado{\n" + "nombre=" + nombre + "\n apellido=" + apellido + "\n rut=" + rut + "\n}";
+    }
+
+    public Empleado(String nombre, String apellido, String rut) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.rut = rut;
     }
     
 }
