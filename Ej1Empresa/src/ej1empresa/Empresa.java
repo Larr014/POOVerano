@@ -31,7 +31,7 @@ public class Empresa {
 
     @Override
     public String toString() {
-        return "Empresa{" + "nombre=" + nombre + ", codigo=" + codigo + ", listaEmpleados=" + listaEmpleados + '}';
+        return "Empresa{\n" + "Nombre:" + nombre + "\ncodigo:" + codigo +  "\n}";
     }
 
     
@@ -73,6 +73,16 @@ public class Empresa {
             if(listaEmpleados[i]!=null){
                 if(listaEmpleados[i].getRut().equals(rut)){
                     listaEmpleados[i]=null;
+                    break;
+                }
+            }
+        }
+    }
+    public void mostrarEmpleado(String rut){
+        for (int i = 0; i < listaEmpleados.length; i++) {
+            if(listaEmpleados[i]!=null){
+                if(listaEmpleados[i].getRut().equals(rut)){
+                    System.out.println(listaEmpleados[i].toString());
                     break;
                 }
             }
