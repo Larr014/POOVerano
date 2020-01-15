@@ -28,8 +28,12 @@ public class Herencia2V {
                 System.out.println("2 Mostrar Empresas");
                 System.out.println("3 Eliminar Empresa");
                 System.out.println("4 Mostrar Empresa");
+                System.out.println("5 Agregar Proveedor");
+                System.out.println("6 Mostrar Proveedores");
+                System.out.println("7 Eliminar Proveedor");
+                System.out.println("8 Mostrar Proveedor");
                 opcion = lector.nextInt();
-            } while (opcion<1 || opcion>4);
+            } while (opcion<1 || opcion>8);
             switch (opcion) {
                 case 1:
                     agregarEmpresa();
@@ -42,6 +46,18 @@ public class Herencia2V {
                     break;
                 case 4:
                     mostrarEmpresa();
+                    break;
+                case 5:
+                    agregarProveedor();
+                    break;
+                case 6:
+                    mostrarProveedores();
+                    break;
+                case 7:
+                    eliminarProveedor();
+                    break;
+                case 8:
+                    mostrarProveedor();
                     break;
                 default:
                     throw new AssertionError();
@@ -128,7 +144,112 @@ public class Herencia2V {
             default:
                 throw new AssertionError();
         }
-        return e;
+       return e;
+        
     }
+
+    private static void agregarProveedor() {
+        System.out.println("Ingrese nombre proveedor");
+        String nombre = lector.next();
+        System.out.println("Ingrese apellido proveedor");
+        String apellido = lector.next();
+        System.out.println("Ingrese rut proveedor");
+        String rut = lector.next();
+        System.out.println("Ingrese rubro proveedor");
+        String rubro = lector.next();
+        System.out.println("Ingrese codigo proveedor");
+        int codigo = lector.nextInt();
+        Empresa e = buscarEmpresa();
+        if(e!=null){
+            e.agregarProveedor(nombre, apellido, rut, rubro, codigo);
+        }
+        else{
+            System.out.println("No hay coincidencias");
+        }
+    }
+
+    private static void mostrarProveedores() {
+        Empresa e = buscarEmpresa();
+        if(e!=null){
+            e.mostrarProveedores();
+        }else{
+            System.out.println("No hay coincidencias");
+        }
+        
+    }
+
+    private static void eliminarProveedor() {
+        Empresa e = buscarEmpresa();
+        if(e!=null){
+            int opcion;
+        do {
+            System.out.println("1 Proveedor por rut");
+            System.out.println("2 Proveedor por codigo");
+            opcion = lector.nextInt();
+        } while (opcion<1 || opcion>2);
+        switch (opcion) {
+            case 1:
+                System.out.println("Ingrese rut del proveedor");
+                String rut = lector.next();
+                //listaEmpresas[respuesta].eliminarProveedor(rut);
+                e.eliminarProveedor(rut);
+                break;
+            case 2:
+                System.out.println("Ingrese codigo del proveedor");
+                int codigo = lector.nextInt();
+                e.eliminarProveedor(codigo);
+                break;
+            default:
+                throw new AssertionError();
+        }
+        }else{
+            System.out.println("No se encontro coincidencias");
+        }
+        
+        
+        
+        
+        
+        
+        
+    }
+
+    private static void mostrarProveedor() {
+       Empresa e = buscarEmpresa();
+        if(e!=null){
+            int opcion;
+        do {
+            System.out.println("1 Proveedor por rut");
+            System.out.println("2 Proveedor por codigo");
+            opcion = lector.nextInt();
+        } while (opcion<1 || opcion>2);
+        switch (opcion) {
+            case 1:
+                System.out.println("Ingrese rut del proveedor");
+                String rut = lector.next();
+                //listaEmpresas[respuesta].eliminarProveedor(rut);
+                e.mostrarProveedor(rut);
+                break;
+            case 2:
+                System.out.println("Ingrese codigo del proveedor");
+                int codigo = lector.nextInt();
+                e.mostrarProveedor(codigo);
+                break;
+            default:
+                throw new AssertionError();
+        }
+        }else{
+            System.out.println("No se encontro coincidencias");
+        }
+        
+       
+    }
+   
+    
+    
+    
+    
+    
+    
     
 }
