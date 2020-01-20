@@ -8,6 +8,7 @@ package Vista;
 import DAO.DAO;
 import Modelo.Asignatura;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -41,7 +42,7 @@ public class AgregarAsignatura extends javax.swing.JFrame {
         codigoAsignatura = new javax.swing.JTextField();
         btnAgregar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Agregar Asignatura");
@@ -108,7 +109,12 @@ public class AgregarAsignatura extends javax.swing.JFrame {
         //y lo guardo en codigo
         int codigo = Integer.parseInt(this.codigoAsignatura.getText());
         Asignatura a = new Asignatura(nombre,codigo);
-        
+        ArrayList<Asignatura> asignaturas = d.getListaAsignaturas();
+        asignaturas.add(a);
+        d.setListaAsignaturas(asignaturas);
+        JOptionPane.showMessageDialog(this, "Se agrego correctamente");
+        codigoAsignatura.setText("");
+        nombreAsignatura.setText("");
         
     }//GEN-LAST:event_btnAgregarActionPerformed
 

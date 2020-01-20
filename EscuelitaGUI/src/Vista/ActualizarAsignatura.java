@@ -7,18 +7,20 @@ package Vista;
 
 import DAO.DAO;
 import Modelo.Asignatura;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author larr0
  */
-public class BuscarAsignatura extends javax.swing.JFrame {
+public class ActualizarAsignatura extends javax.swing.JFrame {
     public DAO d;
+    public Asignatura a;
     /**
      * Creates new form BuscarAsignatura
      */
-    public BuscarAsignatura(DAO d) {
+    public ActualizarAsignatura(DAO d) {
         initComponents();
         this.d = d;
     }
@@ -38,10 +40,11 @@ public class BuscarAsignatura extends javax.swing.JFrame {
         codigo = new javax.swing.JTextField();
         nombre = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
+        btnActualizar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setText("Buscar Asignatura");
+        jLabel1.setText("Actualizar Asignatura");
 
         jLabel2.setText("Codigo:");
 
@@ -62,6 +65,14 @@ public class BuscarAsignatura extends javax.swing.JFrame {
             }
         });
 
+        btnActualizar.setText("Actualizar");
+        btnActualizar.setEnabled(false);
+        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -69,39 +80,41 @@ public class BuscarAsignatura extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(118, 118, 118)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(30, 30, 30)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(jLabel3))
                         .addGap(38, 38, 38)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(codigo)
-                            .addComponent(nombre, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(118, 118, 118)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
+                            .addComponent(btnActualizar)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(28, 28, 28)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(codigo)
+                                    .addComponent(nombre, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnBuscar)))))
-                .addContainerGap(119, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addComponent(jLabel1)
-                .addGap(32, 32, 32)
+                .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(codigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(codigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscar))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(50, 50, 50)
-                .addComponent(btnBuscar)
-                .addContainerGap(75, Short.MAX_VALUE))
+                .addGap(44, 44, 44)
+                .addComponent(btnActualizar)
+                .addContainerGap(79, Short.MAX_VALUE))
         );
 
         pack();
@@ -119,6 +132,9 @@ public class BuscarAsignatura extends javax.swing.JFrame {
             Asignatura r = d.buscarAsignatura(codigo);
             if(r!=null){
                 nombre.setText(r.getNombre());
+                a=r;
+                btnActualizar.setEnabled(true);
+                nombre.setEditable(true);
             }
             else{
                 JOptionPane.showMessageDialog(this, "No se encontro coincidencias");
@@ -132,6 +148,22 @@ public class BuscarAsignatura extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+      try{
+          int codigo = Integer.parseInt(this.codigo.getText());
+          String nombre = this.nombre.getText();
+          Asignatura au = new Asignatura(nombre, codigo);
+          ArrayList<Asignatura> as = d.getListaAsignaturas();
+          as.remove(a);
+          as.add(au);
+          d.setListaAsignaturas(as);
+      }catch(Exception e){
+          
+      }
+        
+        
+    }//GEN-LAST:event_btnActualizarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -150,14 +182,17 @@ public class BuscarAsignatura extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BuscarAsignatura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ActualizarAsignatura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BuscarAsignatura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ActualizarAsignatura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BuscarAsignatura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ActualizarAsignatura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(BuscarAsignatura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ActualizarAsignatura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
@@ -169,6 +204,7 @@ public class BuscarAsignatura extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JTextField codigo;
     private javax.swing.JLabel jLabel1;

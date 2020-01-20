@@ -35,6 +35,8 @@ public class Principal extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         mAgregarAsignatura = new javax.swing.JMenuItem();
         mBuscarAsignatura = new javax.swing.JMenuItem();
+        mEliminarAsignatura = new javax.swing.JMenuItem();
+        mActualizarAsignatura = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -56,6 +58,22 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         jMenu1.add(mBuscarAsignatura);
+
+        mEliminarAsignatura.setText("Eliminar Asignatura");
+        mEliminarAsignatura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mEliminarAsignaturaActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mEliminarAsignatura);
+
+        mActualizarAsignatura.setText("Actualizar Asignatura");
+        mActualizarAsignatura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mActualizarAsignaturaActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mActualizarAsignatura);
 
         jMenuBar1.add(jMenu1);
 
@@ -87,6 +105,17 @@ public class Principal extends javax.swing.JFrame {
         AgregarAsignatura aa = new AgregarAsignatura(d);
         aa.setVisible(true);
     }//GEN-LAST:event_mAgregarAsignaturaActionPerformed
+
+    private void mEliminarAsignaturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mEliminarAsignaturaActionPerformed
+        EliminarAsignatura ea = new EliminarAsignatura(d);
+        ea.setVisible(true);
+        
+    }//GEN-LAST:event_mEliminarAsignaturaActionPerformed
+
+    private void mActualizarAsignaturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mActualizarAsignaturaActionPerformed
+       ActualizarAsignatura as = new ActualizarAsignatura(d);
+       as.setVisible(true);
+    }//GEN-LAST:event_mActualizarAsignaturaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -127,7 +156,9 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem mActualizarAsignatura;
     private javax.swing.JMenuItem mAgregarAsignatura;
     private javax.swing.JMenuItem mBuscarAsignatura;
+    private javax.swing.JMenuItem mEliminarAsignatura;
     // End of variables declaration//GEN-END:variables
 }
