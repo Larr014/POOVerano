@@ -23,7 +23,14 @@ public class DAO {
         this.listaAsignaturas = listaAsignaturas;
     }
     
-    
+    public Asignatura buscarAsignatura(int codigo){
+        for (Asignatura asignatura : listaAsignaturas) {
+            if(asignatura.getCodigo()==codigo){
+                return asignatura;
+            }
+        }
+        return null;
+    }
     
     
     

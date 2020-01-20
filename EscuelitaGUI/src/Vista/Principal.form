@@ -13,6 +13,17 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Agregar Asignatura"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mAgregarAsignaturaActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="mBuscarAsignatura">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Buscar Asignatura"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mBuscarAsignaturaActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>

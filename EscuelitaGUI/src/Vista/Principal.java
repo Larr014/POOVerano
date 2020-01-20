@@ -1,5 +1,7 @@
 package Vista;
 
+import DAO.DAO;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -11,12 +13,13 @@ package Vista;
  * @author larr0
  */
 public class Principal extends javax.swing.JFrame {
-
+    public DAO d;
     /**
      * Creates new form Principal
      */
     public Principal() {
         initComponents();
+        d = new DAO();
     }
 
     /**
@@ -31,6 +34,7 @@ public class Principal extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         mAgregarAsignatura = new javax.swing.JMenuItem();
+        mBuscarAsignatura = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -38,7 +42,20 @@ public class Principal extends javax.swing.JFrame {
         jMenu1.setText("Asignatura");
 
         mAgregarAsignatura.setText("Agregar Asignatura");
+        mAgregarAsignatura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mAgregarAsignaturaActionPerformed(evt);
+            }
+        });
         jMenu1.add(mAgregarAsignatura);
+
+        mBuscarAsignatura.setText("Buscar Asignatura");
+        mBuscarAsignatura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mBuscarAsignaturaActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mBuscarAsignatura);
 
         jMenuBar1.add(jMenu1);
 
@@ -60,6 +77,16 @@ public class Principal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void mBuscarAsignaturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mBuscarAsignaturaActionPerformed
+       BuscarAsignatura ba = new BuscarAsignatura(d);
+       ba.setVisible(true);
+    }//GEN-LAST:event_mBuscarAsignaturaActionPerformed
+
+    private void mAgregarAsignaturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mAgregarAsignaturaActionPerformed
+        AgregarAsignatura aa = new AgregarAsignatura(d);
+        aa.setVisible(true);
+    }//GEN-LAST:event_mAgregarAsignaturaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -101,5 +128,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem mAgregarAsignatura;
+    private javax.swing.JMenuItem mBuscarAsignatura;
     // End of variables declaration//GEN-END:variables
 }
